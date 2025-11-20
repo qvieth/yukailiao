@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yu-Kai Liao - Assistant Professor</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES FOR NAVBAR --- */
+        :root {
+            /* Modern Academic Palette */
+            --bg-color: #fafafa;
+            --card-bg: #ffffff;
+            --primary-text: #1a202c;
+            --secondary-text: #4a5568;
+            --accent-color: #2b6cb0; /* Professional Blue */
+            --accent-hover: #2c5282;
+            --border-color: #e2e8f0;
+            --tag-bg: #ebf8ff;
+            --tag-text: #2b6cb0;
+            
+            /* Spacing & Radius */
+            --container-width: 1200px;
+            --header-height: 70px;
+            --radius-sm: 6px;
+            --radius-lg: 12px;
+        }
+
+        /* --- GLOBAL BASE STYLES (Your Old Font & Colors) --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Keeping your preferred body font */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: #fff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
+        }
+
+        /* Section Backgrounds */
+        section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 3rem;
+        }
+        
+        .hero { background: #ffffff; }
+        #publications { background: #f5f5f7; }
+        #research { background: #ffffff; }
+        .students-section { background: #fafafa; }
+        .photo-gallery { background: #ffffff; }
+        #contact { background: #f5f5f7; }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3.5rem;
+            text-align: center;
+            letter-spacing: -0.02em;
+            color: #1d1d1f;
+        }
+
+        /* --- NEW NAVBAR STYLES --- */
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        nav {
+            max-width: 100%;
+            margin: 0;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 3rem;
+        }
+
+        .logo {
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: var(--primary-text);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--secondary-text);
+            position: relative;
+            transition: 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-color); }
+        
+        /* Elegant underline animation */
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: var(--accent-color); transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+        /* Lang Switcher */
+        .lang-toggle {
+            display: flex;
+            background: #f1f5f9;
+            padding: 3px;
+            border-radius: 20px;
+            margin-left: 1.5rem;
+        }
+
+        .lang-btn {
+            border: none; background: none;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 16px;
+            cursor: pointer;
+            color: #64748b;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: #fff;
+            color: var(--accent-color);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Mobile Menu Button */
+        .menu-btn { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+        .menu-btn span { width: 24px; height: 2px; background: #333; transition: 0.3s; }
+
+        /* --- CONTENT STYLES (Preserved from Index5) --- */
+        
+        /* PROFILE */
+        .hero {
+            margin-top: 70px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            color: #1d1d1f;
+        }
+
+        .hero-text h2 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #6e6e73;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .research-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+
+        .tag {
+            font-size: 0.9rem;
+            background: #f5f5f7;
+            color: #2c3e50;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 500;
+            border: 1px solid #e8e8ed;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 600px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* PUBLICATIONS */
+        .publication-category { margin-bottom: 3.5rem; }
+        
+        .publication-category h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #1d1d1f;
+            border-bottom: 1px solid #e8e8ed;
+            padding-bottom: 0.5rem;
+        }
+
+        .pub-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            background: #fff;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            align-items: start;
+        }
+
+        .pub-item:hover {
+            border-color: #d2d2d7;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            transform: translateY(-2px);
+        }
+
+        .pub-text { 
+            font-size: 1rem; 
+            line-height: 1.6; 
+            color: #1d1d1f; 
+        }
+
+        .pdf-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: #fff;
+            border: 1px solid #d2d2d7;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #6e6e73;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all 0.2s;
+            height: fit-content;
+        }
+
+        .pdf-badge:hover {
+            background: #1d1d1f;
+            color: #fff;
+            border-color: #1d1d1f;
+        }
+        .pdf-badge svg { width: 16px; height: 16px; fill: currentColor; }
+
+        /* RESEARCH CARDS */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .research-card {
+            background: #f9f9f9;
+            padding: 2rem;
+            transition: transform 0.3s;
+            border-radius: 8px;
+        }
+        .research-card:hover { transform: translateY(-5px); }
+
+        .research-card h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+        }
+
+        .research-image {
+            width: 100%;
+            height: 250px;
+            background: #ddd;
+            margin-bottom: 1.5rem;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .research-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* SUPERVISION */
+        .student-group { margin-bottom: 4rem; }
+        
+        .student-group h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: #1d1d1f;
+        }
+
+        .student-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .student-card {
+            background: #fff;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            transition: transform 0.3s;
+        }
+        .student-card:hover { transform: translateY(-5px); }
+
+        .student-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #e8e8ed;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .student-avatar::before {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: #d2d2d7;
+            border-radius: 50%;
+        }
+
+        .student-avatar::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #fff; 
+            border-radius: 50%;
+            top: 35px;
+        }
+
+        .student-avatar img {
+            width: 100%; height: 100%; object-fit: cover;
+            position: relative; z-index: 10;
+        }
+
+        .student-name {
+            font-size: 1.1rem;
+            color: #1d1d1f;
+            font-weight: 500;
+        }
+
+        /* PROSPECTIVE STUDENTS */
+        .info-box {
+            background: #fff;
+            padding: 3rem;
+            margin-top: 3rem;
+            border-left: 4px solid #1d1d1f;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+        }
+
+        .info-box h3 { margin-bottom: 2rem; font-size: 1.6rem; }
+
+        .process-steps { position: relative; padding: 1rem 0; }
+        
+        .process-step {
+            position: relative;
+            padding: 0 0 2.5rem 4rem;
+        }
+
+        .process-step::before {
+            content: attr(data-number);
+            position: absolute;
+            left: 0; top: 0;
+            width: 45px; height: 45px;
+            background: #1d1d1f;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .process-step::after {
+            content: '';
+            position: absolute;
+            left: 21px; top: 45px;
+            width: 2px; height: calc(100% - 45px);
+            background: #e8e8ed;
+            z-index: 1;
+        }
+        .process-step:last-child::after { display: none; }
+
+        .process-step strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            color: #1d1d1f;
+        }
+
+        /* GALLERY */
+        .gallery-masonry {
+            column-count: 3;
+            column-gap: 1.5rem;
+        }
+
+        .gallery-item {
+            margin-bottom: 1.5rem;
+            break-inside: avoid;
+            background: #d2d2d7;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover { transform: scale(1.02); }
+        .gallery-item img { width: 100%; display: block; }
+
+        /* CONTACT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            background: #fff;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+        }
+
+        .contact-details { font-size: 1.1rem; line-height: 2; color: #555; }
+        .contact-details a { color: #0066cc; text-decoration: none; }
+        .contact-details a:hover { text-decoration: underline; }
+
+        .map-container {
+            width: 100%; height: 350px;
+            background: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .map-container iframe { width: 100%; height: 100%; border: none; }
+
+        /* FOOTER */
+        footer {
+            background: #1d1d1f;
+            color: #fff;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+        .fade-in { animation: fadeIn 0.8s ease forwards; opacity: 0; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .menu-btn { display: flex; }
+            .nav-links {
+                position: absolute; top: var(--header-height); left: 0; width: 100%;
+                background: white; flex-direction: column; padding: 2rem;
+                border-bottom: 1px solid #eee;
+                transform: translateY(-150%); transition: transform 0.3s ease;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+            .nav-links.open { transform: translateY(0); }
+            
+            .hero-content { grid-template-columns: 1fr; gap: 2rem; }
+            .research-grid { grid-template-columns: 1fr; }
+            .gallery-masonry { column-count: 2; }
+            .contact-grid { grid-template-columns: 1fr; padding: 2rem; }
+            .student-cards { grid-template-columns: 1fr; }
+
+            .pub-item {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .pdf-badge {
+                width: fit-content;
+                align-self: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section { padding: 4rem 1.5rem; }
+            .gallery-masonry { column-count: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">Yu-Kai Liao</a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#profile" data-en="Profile" data-zh="個人介紹" onclick="closeMenu()">Profile</a></li>
+                <li><a href="#publications" data-en="Publications" data-zh="研究成果" onclick="closeMenu()">Publications</a></li>
+                <li><a href="#research" data-en="Research" data-zh="研究主題" onclick="closeMenu()">Research</a></li>
+                <li><a href="#supervision" data-en="Supervision" data-zh="指導學生" onclick="closeMenu()">Supervision</a></li>
+                <li><a href="#gallery" data-en="Gallery" data-zh="照片集" onclick="closeMenu()">Gallery</a></li>
+                <li><a href="#contact" data-en="Contact" data-zh="聯絡方式" onclick="closeMenu()">Contact</a></li>
+            </ul>
+
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div class="lang-toggle" style="margin-left: 0;"> 
+                    <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+                    <button class="lang-btn" onclick="switchLang('zh')">中文</button>
+                </div>
+
+                <div class="menu-btn" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="lang-content active" id="en-content">
+        <section class="hero" id="profile">
+            <div class="hero-content fade-in">
+                <div class="hero-text">
+                    <h1>Yu-Kai Liao</h1>
+                    <h2>Assistant Professor<br>International Degree Program in Climate Change and Sustainable Development<br>National Taiwan University</h2>
+                    <p><strong>Research Interests:</strong></p>
+                    <div class="research-tags">
+                        <span class="tag">Political Ecology</span>
+                        <span class="tag">Economic Geography</span>
+                        <span class="tag">Water Research</span>
+                        <span class="tag">Science and Technology Studies</span>
+                        <span class="tag">Vietnamese Studies</span>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="photo.jpg" alt="Yu-Kai Liao">
+                </div>
+            </div>
+        </section>
+
+        <section id="publications">
+            <h2 class="section-title">Publications</h2>
+            
+            <div class="publication-category">
+                <h3>Journal Articles</h3>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>Liao, Yu-Kai</strong> (2025) Shrimp Economies and Hydro-Social Lives in the Capricious and Infrastructuralised Vietnamese Mekong Delta. <em>Water Alternatives</em>. 18(2).
+                    </div>
+                    <a href="1. Shrimp economies.pdf" class="pdf-badge" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,19V15.5L13.5,17L14.92,15.58L12,12.67L9.08,15.58L10.5,17L12,15.5V19Z"/></svg>
+                        PDF
+                    </a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>廖昱凱</strong> (2024) 再訪區域地理：越南研究的知識生產。<em>地理學報</em>。109: 37-67。
+                    </div>
+                    <a href="2. 再訪區域地理：越南研究的知識生產_廖昱凱.pdf" class="pdf-badge" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,19V15.5L13.5,17L14.92,15.58L12,12.67L9.08,15.58L10.5,17L12,15.5V19Z"/></svg>
+                        PDF
+                    </a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>Liao, Yu-Kai</strong> and Jeremy J. Schmidt. (2023) Hydrosocial Geographies: Cycles, Spaces, and Emerging Spheres of Concern. <em>Progress in Environmental Geography</em>, 2(4): 240-265.
+                    </div>
+                    <a href="3. Hydrosocial geographies_廖昱凱.pdf" class="pdf-badge" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,19V15.5L13.5,17L14.92,15.58L12,12.67L9.08,15.58L10.5,17L12,15.5V19Z"/></svg>
+                        PDF
+                    </a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>Liao, Yu-Kai</strong> (2023) Shrimp in Labs: Biosecurity and Hydro-Social Life. <em>Environment and Planning E: Nature and Space</em>, 7(1): 141-165.
+                    </div>
+                    <a href="4. Shrimp in labs_廖昱凱.pdf" class="pdf-badge" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,19V15.5L13.5,17L14.92,15.58L12,12.67L9.08,15.58L10.5,17L12,15.5V19Z"/></svg>
+                        PDF
+                    </a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        Hong, Dong-Li, Shiuh-Shen Chien and <strong>Yu-Kai Liao</strong> (2020) Green Developmentalism and Trade-offs between Natural Preservation and Environmental Exploitation in China. <em>Environment and Planning E: Nature and Space</em>, 3(3): 688-705.
+                    </div>
+                    <a href="5. Green developmentalism_廖昱凱.pdf" class="pdf-badge" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,19V15.5L13.5,17L14.92,15.58L12,12.67L9.08,15.58L10.5,17L12,15.5V19Z"/></svg>
+                        PDF
+                    </a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>廖昱凱</strong>、簡旭伸(2019) 地理學中的量體轉向：領土立體化、地球物理政治與環境中的情感氛圍。<em>地理學報</em> 92: 1-29。
+                    </div>
+                    <a href="6. 地理學中的量體轉向_廖昱凱.pdf" class="pdf-badge" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,19V15.5L13.5,17L14.92,15.58L12,12.67L9.08,15.58L10.5,17L12,15.5V19Z"/></svg>
+                        PDF
+                    </a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>廖昱凱</strong> (2017) 點石成金－事業電子廢棄物與貴金屬回收的市場化分析。<em>地理學報</em>。85: 47-71。
+                    </div>
+                    <a href="7. 點石成金.pdf" class="pdf-badge" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,19V15.5L13.5,17L14.92,15.58L12,12.67L9.08,15.58L10.5,17L12,15.5V19Z"/></svg>
+                        PDF
+                    </a>
+                </div>
+                 <div class="pub-item">
+                    <div class="pub-text">
+                        盧鏡臣、周素卿、<strong>廖昱凱</strong> (2015) 落差與接軌？從國際發展看台灣的都市氣候治理與研究。<em>都市與計劃</em>。42(1): 7-38。
+                    </div>
+                    <a href="#" class="pdf-badge" style="opacity: 0.5; cursor: not-allowed;">
+                        No PDF
+                    </a>
+                </div>
+            </div>
+
+            <div class="publication-category">
+                <h3>Book Chapters</h3>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        Hsu, Jinn-Yuh and <strong>Yu-Kai Liao</strong> (2017) Path Dependence. In D. Richardson, N. Castree, M. Goodchild, W. Liu, A. Kobayashi & R. Marston (eds) <em>The Wiley-AAG international encyclopedia of geography</em>. Oxford: Wiley-Blackwell.
+                    </div>
+                    <a href="Book Chapter Path dependence.pdf" class="pdf-badge" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,19V15.5L13.5,17L14.92,15.58L12,12.67L9.08,15.58L10.5,17L12,15.5V19Z"/></svg>
+                        PDF
+                    </a>
+                </div>
+            </div>
+            
+            <div class="publication-category">
+                <h3>Book Reviews</h3>
+                 <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>廖昱凱</strong> (2023) 書評: Underflows: Queer Trans Ecologies and River Justice. Cleo Woelfle Hazard. 2022. Seattle, United States: University of Washington Press。<em>地理學報</em>。 104: 141-151。
+                    </div>
+                    <a href="Book review 1 Underflows.pdf" class="pdf-badge" target="_blank">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,19V15.5L13.5,17L14.92,15.58L12,12.67L9.08,15.58L10.5,17L12,15.5V19Z"/></svg>
+                        PDF
+                    </a>
+                </div>
+                <div class="pub-item">
+                     <div class="pub-text">
+                         <strong>廖昱凱</strong> (2021) 書評：Pamela D. McElwee. Forests Are Gold: Trees, People, and Environmental Rule in Vietnam, Seattle, United States: University of Washington Press, 2016。<em>Journal of Viet Nam Hoc.</em> 2: 52-55.
+                     </div>
+                     <a href="#" class="pdf-badge" style="opacity: 0.5; cursor: not-allowed;">No PDF</a>
+                </div>
+                 <div class="pub-item">
+                     <div class="pub-text">
+                         <strong>廖昱凱</strong> (2020) 書評：Viral Economies: Bird Flu Experiments in Vietnam. Natalie Porter. 2019. United States: University of Chicago Press。<em>考古人類學刊</em>。92: 125-132。
+                     </div>
+                     <a href="Book review 2 Viral Economies.pdf" class="pdf-badge" target="_blank">
+                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,19V15.5L13.5,17L14.92,15.58L12,12.67L9.08,15.58L10.5,17L12,15.5V19Z"/></svg>
+                         PDF
+                     </a>
+                </div>
+                <div class="pub-item">
+                     <div class="pub-text">
+                         <strong>廖昱凱</strong> (2020) 書評：常態水與全球敘事：美國水資源管理哲學 評Water: Abundance, Scarcity and Security in the Age of Humanity。<em>科技、醫療與社會</em>。30: 225-238。
+                     </div>
+                     <a href="Book review 3 Water 常態水與全球敘事.pdf" class="pdf-badge" target="_blank">
+                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,19V15.5L13.5,17L14.92,15.58L12,12.67L9.08,15.58L10.5,17L12,15.5V19Z"/></svg>
+                         PDF
+                     </a>
+                </div>
+                 <div class="pub-item">
+                     <div class="pub-text">
+                         <strong>廖昱凱</strong> (2016) 書評: Material Politics: Disputes Along the Pipeline. Andrew Barry. 2013. New York, United States: John Wiley & Sons Inc.。<em>地理學報</em>。 80: 81-86。
+                     </div>
+                     <a href="Book review 4 Material politics.pdf" class="pdf-badge" target="_blank">
+                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,19V15.5L13.5,17L14.92,15.58L12,12.67L9.08,15.58L10.5,17L12,15.5V19Z"/></svg>
+                         PDF
+                     </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="research">
+            <h2 class="section-title">Research</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="research-image"><img src="photo/research1.png" alt="Shrimp"></div>
+                    <h3>Shrimp Economies in the Mekong Delta</h3>
+                </div>
+                <div class="research-card">
+                    <div class="research-image"><img src="photo/research2.png" alt="Climate"></div>
+                    <h3>Climate Services in Vietnam</h3>
+                </div>
+                <div class="research-card">
+                    <div class="research-image"><img src="photo/research3.png" alt="Agriculture"></div>
+                    <h3>Climate Smart Agriculture and Coffee Plantation in Vietnam's Central Highland</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="supervision" class="students-section">
+            <h2 class="section-title">Supervision</h2>
+            
+            <div class="student-group">
+                <h3>Current Students</h3>
+                <div class="student-cards">
+                    <div class="student-card">
+                        <div class="student-avatar"></div>
+                        <div class="student-name">Pin-Han Tsai</div>
+                    </div>
+                    <div class="student-card">
+                        <div class="student-avatar"></div>
+                        <div class="student-name">Chia-Chien Li</div>
+                    </div>
+                    <div class="student-card">
+                        <div class="student-avatar"></div>
+                        <div class="student-name">Huỳnh Hà Quốc Việt (Jason)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="student-group">
+                <h3>Alumni</h3>
+                <div class="student-cards">
+                    <div class="student-card">
+                        <div class="student-avatar"></div>
+                        <div class="student-name">Yan-Ruei Huang</div>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Thesis: Rethinking Design for Sustainability: A Novel Multi-Objective Optimization Methodology for Sustainable Product Lifecycle Design</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>Prospective Students: Important Information</h3>
+                <p>If you are considering working with me as your supervisor, please read the following guidelines carefully. These points outline my expectations and the preparation required before we arrange a meeting or begin supervision.</p>
+                <br>
+                <div class="process-steps">
+                    <div class="process-step" data-number="1">
+                        <strong>Develop your own research proposal</strong>
+                        <p>I encourage students to formulate their own research ideas. Once you have write a tentative research proposal, I will provide feedback, guidance, and theoretical grounding.</p>
+                    </div>
+                    <div class="process-step" data-number="2">
+                        <strong>Prepare a structured research proposal</strong>
+                        <p>Your initial proposal should include research title, research questions, literature review, and methodology. This does not need to be perfect, but it should demonstrate that you have thought carefully about your topic.</p>
+                    </div>
+                    <div class="process-step" data-number="3">
+                        <strong>Evaluate your timeline</strong>
+                        <p>Please assess the time you will need to complete your proposal and ensure that your schedule aligns with your relevant application deadlines. This will help maintain a smooth review process.</p>
+                    </div>
+                    <div class="process-step" data-number="4">
+                        <strong>Read one of my papers</strong>
+                        <p>To understand my research orientation, writing style, and theoretical approach, please read at least one of my published papers before contacting me. This allows us to have a more productive conversation and ensures that your proposed topic fits within my areas of expertise.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="photo-gallery" id="gallery">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-masonry">
+                <div class="gallery-item">
+                    <img src="photo/1.jpg" alt="Research Photo 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/2.jpg" alt="Research Photo 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/3.jpg" alt="Research Photo 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/4.jpg" alt="Research Photo 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/5.jpg" alt="Research Photo 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/6.jpg" alt="Research Photo 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/7.jpg" alt="Research Photo 7">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/8.jpg" alt="Research Photo 8">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/9.jpg" alt="Research Photo 9">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/10.jpg" alt="Research Photo 10">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/11.jpg" alt="Research Photo 11">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/12.jpg" alt="Research Photo 12">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/13.jpg" alt="Research Photo 13">
+                </div>
+                <!-- <div class="gallery-item"><img src="photo/1.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/2.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/3.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/4.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/5.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/6.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/7.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/8.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/9.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/10.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/11.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/12.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/13.jpg" alt="Photo"></div> -->
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-details">
+                    <p><strong>Global Change Centre</strong><br>
+                    National Taiwan University<br>
+                    No. 1, Sec. 4, Roosevelt Rd.<br>
+                    Taipei 10617<br>
+                    Taiwan</p>
+                    <p style="margin-top: 1.5rem;">
+                        <strong>Email:</strong> <a href="mailto:liaoyk@ntu.edu.tw">liaoyk@ntu.edu.tw</a>
+                    </p>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://maps.google.com/maps?q=National+Taiwan+University&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="lang-content" id="zh-content">
+        <section class="hero" id="profile">
+            <div class="hero-content fade-in">
+                <div class="hero-text">
+                    <h1>廖昱凱</h1>
+                    <h2>國立臺灣大學<br>氣候變遷與永續發展國際學位學程<br>助理教授</h2>
+                    <p><strong>研究興趣：</strong></p>
+                    <div class="research-tags">
+                        <span class="tag">政治生態學</span>
+                        <span class="tag">經濟地理</span>
+                        <span class="tag">水研究</span>
+                        <span class="tag">科技與社會研究</span>
+                        <span class="tag">越南研究</span>
+                    </div>
+                </div>
+                <div class="hero-image"><img src="photo.jpg" alt="廖昱凱"></div>
+            </div>
+        </section>
+
+        <section id="publications">
+            <h2 class="section-title">研究成果</h2>
+            <div class="publication-category">
+                <h3>期刊文章</h3>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>Liao, Yu-Kai</strong> (2025) Shrimp Economies and Hydro-Social Lives in the Capricious and Infrastructuralised Vietnamese Mekong Delta. <em>Water Alternatives</em>. 18(2).
+                    </div>
+                    <a href="1. Shrimp economies.pdf" class="pdf-badge" target="_blank">PDF</a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>廖昱凱</strong> (2024) 再訪區域地理：越南研究的知識生產。<em>地理學報</em>。109: 37-67。
+                    </div>
+                    <a href="2. 再訪區域地理：越南研究的知識生產_廖昱凱.pdf" class="pdf-badge" target="_blank">PDF</a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>Liao, Yu-Kai</strong> and Jeremy J. Schmidt. (2023) Hydrosocial Geographies: Cycles, Spaces, and Emerging Spheres of Concern. <em>Progress in Environmental Geography</em>, 2(4): 240-265.
+                    </div>
+                    <a href="3. Hydrosocial geographies_廖昱凱.pdf" class="pdf-badge" target="_blank">PDF</a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>Liao, Yu-Kai</strong> (2023) Shrimp in Labs: Biosecurity and Hydro-Social Life. <em>Environment and Planning E: Nature and Space</em>, 7(1): 141-165.
+                    </div>
+                    <a href="4. Shrimp in labs_廖昱凱.pdf" class="pdf-badge" target="_blank">PDF</a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        Hong, Dong-Li, Shiuh-Shen Chien and <strong>Yu-Kai Liao</strong> (2020) Green Developmentalism and Trade-offs between Natural Preservation and Environmental Exploitation in China. <em>Environment and Planning E: Nature and Space</em>, 3(3): 688-705.
+                    </div>
+                    <a href="5. Green developmentalism_廖昱凱.pdf" class="pdf-badge" target="_blank">PDF</a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>廖昱凱</strong>、簡旭伸(2019) 地理學中的量體轉向：領土立體化、地球物理政治與環境中的情感氛圍。<em>地理學報</em> 92: 1-29。
+                    </div>
+                    <a href="6. 地理學中的量體轉向_廖昱凱.pdf" class="pdf-badge" target="_blank">PDF</a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>廖昱凱</strong> (2017) 點石成金－事業電子廢棄物與貴金屬回收的市場化分析。<em>地理學報</em>。85: 47-71。
+                    </div>
+                    <a href="7. 點石成金.pdf" class="pdf-badge" target="_blank">PDF</a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        盧鏡臣、周素卿、<strong>廖昱凱</strong> (2015) 落差與接軌？從國際發展看台灣的都市氣候治理與研究。<em>都市與計劃</em>。42(1): 7-38。
+                    </div>
+                    <a href="#" class="pdf-badge" style="opacity: 0.5; cursor: not-allowed;">No PDF</a>
+                </div>
+            </div>
+
+            <div class="publication-category">
+                <h3>專書論文</h3>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        Hsu, Jinn-Yuh and <strong>Yu-Kai Liao</strong> (2017) Path Dependence. In D. Richardson, N. Castree, M. Goodchild, W. Liu, A. Kobayashi & R. Marston (eds) <em>The Wiley-AAG international encyclopedia of geography</em>. Oxford: Wiley-Blackwell.
+                    </div>
+                    <a href="Book Chapter Path dependence.pdf" class="pdf-badge" target="_blank">PDF</a>
+                </div>
+            </div>
+            
+            <div class="publication-category">
+                <h3>書評</h3>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>廖昱凱</strong> (2023) 書評: Underflows: Queer Trans Ecologies and River Justice. Cleo Woelfle Hazard. 2022. Seattle, United States: University of Washington Press。<em>地理學報</em>。 104: 141-151。
+                    </div>
+                    <a href="Book review 1 Underflows.pdf" class="pdf-badge" target="_blank">PDF</a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>廖昱凱</strong> (2021) 書評：Pamela D. McElwee. Forests Are Gold: Trees, People, and Environmental Rule in Vietnam, Seattle, United States: University of Washington Press, 2016。<em>Journal of Viet Nam Hoc.</em> 2: 52-55.
+                    </div>
+                    <a href="#" class="pdf-badge" style="opacity: 0.5; cursor: not-allowed;">No PDF</a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>廖昱凱</strong> (2020) 書評：Viral Economies: Bird Flu Experiments in Vietnam. Natalie Porter. 2019. United States: University of Chicago Press。<em>考古人類學刊</em>。92: 125-132。
+                    </div>
+                    <a href="Book review 2 Viral Economies.pdf" class="pdf-badge" target="_blank">PDF</a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>廖昱凱</strong> (2020) 書評：常態水與全球敘事：美國水資源管理哲學 評Water: Abundance, Scarcity and Security in the Age of Humanity。<em>科技、醫療與社會</em>。30: 225-238。
+                    </div>
+                    <a href="Book review 3 Water 常態水與全球敘事.pdf" class="pdf-badge" target="_blank">PDF</a>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-text">
+                        <strong>廖昱凱</strong> (2016) 書評: Material Politics: Disputes Along the Pipeline. Andrew Barry. 2013. New York, United States: John Wiley & Sons Inc.。<em>地理學報</em>。 80: 81-86。
+                    </div>
+                    <a href="Book review 4 Material politics.pdf" class="pdf-badge" target="_blank">PDF</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="research">
+            <h2 class="section-title">研究主題</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="research-image"><img src="photo/research1.png" alt="蝦子經濟"></div>
+                    <h3>越南湄公河三角洲的蝦子經濟</h3>
+                </div>
+                <div class="research-card">
+                    <div class="research-image"><img src="photo/research2.png" alt="氣候服務"></div>
+                    <h3>越南氣候服務</h3>
+                </div>
+                <div class="research-card">
+                    <div class="research-image"><img src="photo/research3.png" alt="農業"></div>
+                    <h3>越南中越高地的氣候智慧型農業與咖啡栽培業</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="supervision" class="students-section">
+            <h2 class="section-title">指導學生</h2>
+            <div class="student-group">
+                <h3>目前指導的學生</h3>
+                <div class="student-cards">
+                    <div class="student-card">
+                        <div class="student-avatar"></div>
+                        <div class="student-name">蔡秉翰</div>
+                    </div>
+                    <div class="student-card">
+                        <div class="student-avatar"></div>
+                        <div class="student-name">李家謙</div>
+                    </div>
+                    <div class="student-card">
+                        <div class="student-avatar"></div>
+                        <div class="student-name">Huỳnh Hà Quốc Việt (Jason)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="student-group">
+                <h3>畢業生</h3>
+                <div class="student-cards">
+                    <div class="student-card">
+                        <div class="student-avatar"></div>
+                        <div class="student-name">黃衍瑞</div>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">論文題目: 重塑永續產品設計思維：以多目標最佳化及生命週期評估打造永續產品設計方法學</p>
+                    </div>
+                </div>
+            </div>
+            <div class="info-box">
+                <h3>預計申請碩博士</h3>
+                <p>如果你正在考慮找我指導研究，請先閱讀以下說明。這些內容將幫助你了解我的期待，也能讓我們之後的討論更有效率。</p>
+                <br>
+                <div class="process-steps">
+                    <div class="process-step" data-number="1">
+                        <strong>請先自行發展研究構想</strong>
+                        <p>我鼓勵學生主動提出自己的研究點子，而不是等待我提供題目。當你完成一份初步的研究計畫後，我會再協助你進一步細化問題、補充理論與方法上的建議。</p>
+                    </div>
+                    <div class="process-step" data-number="2">
+                        <strong>準備一份基本且有架構的研究計畫</strong>
+                        <p>你的初步研究計畫建議包含以下內容：研究題目、研究問題、相關文獻與背景、研究方法。計畫不需非常完整，但應能呈現你已認真思考過自己的研究主題。</p>
+                    </div>
+                    <div class="process-step" data-number="3">
+                        <strong>請先確認你的時間安排</strong>
+                        <p>請評估你需要多少時間來完成研究計畫，並檢查是否能配合相關申請或系所的截止日期。良好的時間規劃有助於後續的討論與審閱。</p>
+                    </div>
+                    <div class="process-step" data-number="4">
+                        <strong>請先閱讀我至少一篇論文</strong>
+                        <p>為了讓你更了解我的研究方向、寫作方式與理論取向，建議在與我聯繫前先讀一篇我已發表的研究。這能讓我們的對話更有焦點，也能幫助你判斷自己的研究是否與我的專長相符。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="photo-gallery" id="gallery">
+            <h2 class="section-title">照片集</h2>
+            <div class="gallery-masonry">
+                <div class="gallery-item">
+                    <img src="photo/1.jpg" alt="研究照片 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/2.jpg" alt="研究照片 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/3.jpg" alt="研究照片 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/4.jpg" alt="研究照片 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/5.jpg" alt="研究照片 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/6.jpg" alt="研究照片 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/7.jpg" alt="研究照片 7">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/8.jpg" alt="研究照片 8">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/9.jpg" alt="研究照片 9">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/10.jpg" alt="研究照片 10">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/11.jpg" alt="研究照片 11">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/12.jpg" alt="研究照片 12">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/13.jpg" alt="研究照片 13">
+                </div>
+                <!-- <div class="gallery-item"><img src="photo/1.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/2.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/3.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/4.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/5.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/6.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/7.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/8.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/9.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/10.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/11.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/12.jpg" alt="Photo"></div> -->
+                <!-- <div class="gallery-item"><img src="photo/13.jpg" alt="Photo"></div> -->
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">聯絡方式</h2>
+            <div class="contact-grid">
+                <div class="contact-details">
+                    <p><strong>全球變遷中心</strong><br>10617台北市大安區羅斯福路四段一號</p>
+                    <p style="margin-top: 1.5rem;"><strong>Email:</strong> <a href="mailto:liaoyk@ntu.edu.tw">liaoyk@ntu.edu.tw</a></p>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://maps.google.com/maps?q=National+Taiwan+University&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 Yu-Kai Liao. All rights reserved.</p>
+    </footer>
+<script>
+    // Enhanced scroll functionality that works with language switching
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize navigation text
+        updateNavText('en');
+        
+        // Enhanced click handler for navbar links
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const currentLang = document.querySelector('.lang-btn.active').textContent.trim() === 'EN' ? 'en' : 'zh';
+                const currentContent = document.getElementById(currentLang + '-content');
+                
+                // Find the target element within the active language content
+                const targetElement = currentContent.querySelector(targetId);
+                
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Close mobile menu if open
+                closeMenu();
+            });
+        });
+    });
+
+    // Navbar Active State Logic
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Scroll Spy to update Active State on scroll
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const currentLang = document.querySelector('.lang-btn.active').textContent.trim() === 'EN' ? 'en' : 'zh';
+        const currentContent = document.getElementById(currentLang + '-content');
+        const sections = currentContent.querySelectorAll('section');
+        const headerHeight = document.querySelector('header').offsetHeight;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= (sectionTop - headerHeight - 50)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').includes(current)) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    function toggleMenu() {
+        const nav = document.getElementById('navLinks');
+        nav.classList.toggle('open');
+    }
+
+    function closeMenu() {
+        document.getElementById('navLinks').classList.remove('open');
+    }
+
+    function updateNavText(lang) {
+        navLinks.forEach(link => {
+            const text = lang === 'en' ? link.getAttribute('data-en') : link.getAttribute('data-zh');
+            if (text) link.textContent = text;
+        });
+    }
+
+    function switchLang(lang) {
+        const en = document.getElementById('en-content');
+        const zh = document.getElementById('zh-content');
+        const btns = document.querySelectorAll('.lang-btn');
+        
+        if (lang === 'en') {
+            en.classList.add('active');
+            zh.classList.remove('active');
+            btns[0].classList.add('active');
+            btns[1].classList.remove('active');
+        } else {
+            en.classList.remove('active');
+            zh.classList.add('active');
+            btns[0].classList.remove('active');
+            btns[1].classList.add('active');
+        }
+        updateNavText(lang);
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        closeMenu();
+        
+        // Reset active nav state after language switch
+        setTimeout(() => {
+            navLinks.forEach(link => link.classList.remove('active'));
+            navLinks[0].classList.add('active');
+        }, 100);
+    }
+</script>
+    <!-- <script> -->
+    <!--     // Enhanced scroll functionality -->
+    <!--     document.querySelectorAll('a[href^="#"]').forEach(anchor => { -->
+    <!--         anchor.addEventListener('click', function (e) { -->
+    <!--             e.preventDefault(); -->
+    <!---->
+    <!--             const targetId = this.getAttribute('href'); -->
+    <!--             const targetElement = document.querySelector(targetId); -->
+    <!---->
+    <!--             if (targetElement) { -->
+    <!--                 const headerHeight = document.querySelector('header').offsetHeight; -->
+    <!--                 const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight; -->
+    <!---->
+    <!--                 window.scrollTo({ -->
+    <!--                     top: targetPosition, -->
+    <!--                     behavior: 'smooth' -->
+    <!--                 }); -->
+    <!--             } -->
+    <!--         }); -->
+    <!--     }); -->
+    <!---->
+    <!--     // Navbar Active State Logic -->
+    <!--     const navLinks = document.querySelectorAll('.nav-links a'); -->
+    <!---->
+    <!--     navLinks.forEach(link => { -->
+    <!--         link.addEventListener('click', function() { -->
+    <!--             navLinks.forEach(l => l.classList.remove('active')); -->
+    <!--             this.classList.add('active'); -->
+    <!--             // Close mobile menu on click -->
+    <!--             document.getElementById('navLinks').classList.remove('open'); -->
+    <!--         }); -->
+    <!--     }); -->
+    <!---->
+    <!--     // Scroll Spy to update Active State on scroll -->
+    <!--     window.addEventListener('scroll', () => { -->
+    <!--         let current = ''; -->
+    <!--         const sections = document.querySelectorAll('section'); -->
+    <!--         const headerHeight = document.querySelector('header').offsetHeight; -->
+    <!---->
+    <!--         sections.forEach(section => { -->
+    <!--             const sectionTop = section.offsetTop; -->
+    <!--             if (pageYOffset >= (sectionTop - headerHeight - 50)) { -->
+    <!--                 current = section.getAttribute('id'); -->
+    <!--             } -->
+    <!--         }); -->
+    <!---->
+    <!--         navLinks.forEach(link => { -->
+    <!--             link.classList.remove('active'); -->
+    <!--             if (link.getAttribute('href').includes(current)) { -->
+    <!--                 link.classList.add('active'); -->
+    <!--             } -->
+    <!--         }); -->
+    <!--     }); -->
+    <!---->
+    <!--     function toggleMenu() { -->
+    <!--         const nav = document.getElementById('navLinks'); -->
+    <!--         // The new navbar uses 'open' class for mobile menu -->
+    <!--         nav.classList.toggle('open'); -->
+    <!--     } -->
+    <!---->
+    <!--     function closeMenu() { -->
+    <!--         document.getElementById('navLinks').classList.remove('open'); -->
+    <!--     } -->
+    <!---->
+    <!--     function updateNavText(lang) { -->
+    <!--         navLinks.forEach(link => { -->
+    <!--             const text = lang === 'en' ? link.getAttribute('data-en') : link.getAttribute('data-zh'); -->
+    <!--             if (text) link.textContent = text; -->
+    <!--         }); -->
+    <!--     } -->
+    <!---->
+    <!--     function switchLang(lang) { -->
+    <!--         const en = document.getElementById('en-content'); -->
+    <!--         const zh = document.getElementById('zh-content'); -->
+    <!--         const btns = document.querySelectorAll('.lang-btn'); -->
+    <!---->
+    <!--         if (lang === 'en') { -->
+    <!--             en.classList.add('active'); -->
+    <!--             zh.classList.remove('active'); -->
+    <!--             btns[0].classList.add('active'); -->
+    <!--             btns[1].classList.remove('active'); -->
+    <!--         } else { -->
+    <!--             en.classList.remove('active'); -->
+    <!--             zh.classList.add('active'); -->
+    <!--             btns[0].classList.remove('active'); -->
+    <!--             btns[1].classList.add('active'); -->
+    <!--         } -->
+    <!--         updateNavText(lang); -->
+    <!--         window.scrollTo({top: 0, behavior: 'smooth'}); -->
+    <!--         closeMenu(); -->
+    <!--     } -->
+    <!---->
+    <!--     document.addEventListener('DOMContentLoaded', () => { -->
+    <!--         updateNavText('en'); -->
+    <!--     }); -->
+    <!-- </script> -->
+</body>
+</html>
