@@ -58,6 +58,7 @@
         .hero { background: #ffffff; }
         #publications { background: #f5f5f7; }
         #research { background: #ffffff; }
+        #teaching { background: #fafafa; }
         .students-section { background: #fafafa; }
         .photo-gallery { background: #ffffff; }
         #contact { background: #f5f5f7; }
@@ -308,6 +309,35 @@
         }
         .research-image img { width: 100%; height: 100%; object-fit: cover; }
 
+        /* TEACHING SECTION */
+        .teaching-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .teaching-item {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            transition: transform 0.3s;
+        }
+
+        .teaching-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .teaching-item h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #1d1d1f;
+        }
+
         /* SUPERVISION */
         .student-group { margin-bottom: 4rem; }
         
@@ -346,29 +376,31 @@
             overflow: hidden;
             position: relative;
         }
+.student-avatar::before {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #d2d2d7;
+    border-radius: 50%;
+}
 
-        .student-avatar::before {
-            content: "";
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: #d2d2d7;
-            border-radius: 50%;
-        }
-
-        .student-avatar::after {
-            content: "";
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: #fff; 
-            border-radius: 50%;
-            top: 35px;
-        }
+.student-avatar::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #fff; 
+    border-radius: 50%;
+    top: 35px;
+}
 
         .student-avatar img {
-            width: 100%; height: 100%; object-fit: cover;
-            position: relative; z-index: 10;
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+            position: relative; 
+            z-index: 10;
         }
 
         .student-name {
@@ -497,6 +529,7 @@
             
             .hero-content { grid-template-columns: 1fr; gap: 2rem; }
             .research-grid { grid-template-columns: 1fr; }
+            .teaching-list { grid-template-columns: 1fr; }
             .gallery-masonry { column-count: 2; }
             .contact-grid { grid-template-columns: 1fr; padding: 2rem; }
             .student-cards { grid-template-columns: 1fr; }
@@ -528,6 +561,7 @@
                 <li><a href="#profile" data-en="Profile" data-zh="個人介紹" onclick="closeMenu()">Profile</a></li>
                 <li><a href="#publications" data-en="Publications" data-zh="研究成果" onclick="closeMenu()">Publications</a></li>
                 <li><a href="#research" data-en="Research" data-zh="研究主題" onclick="closeMenu()">Research</a></li>
+                <li><a href="#teaching" data-en="Teaching" data-zh="教學課程" onclick="closeMenu()">Teaching</a></li>
                 <li><a href="#supervision" data-en="Supervision" data-zh="指導學生" onclick="closeMenu()">Supervision</a></li>
                 <li><a href="#gallery" data-en="Gallery" data-zh="照片集" onclick="closeMenu()">Gallery</a></li>
                 <li><a href="#contact" data-en="Contact" data-zh="聯絡方式" onclick="closeMenu()">Contact</a></li>
@@ -723,6 +757,25 @@
             </div>
         </section>
 
+        <!-- NEW TEACHING SECTION -->
+        <section id="teaching">
+            <h2 class="section-title">Teaching</h2>
+            <div class="teaching-list">
+                <div class="teaching-item">
+                    <h3>Frontier Research Topic I&II: Climate Service and Environmental Sustainability</h3>
+                </div>
+                <div class="teaching-item">
+                    <h3>Workshop on Climate Change and Human Settlements</h3>
+                </div>
+                <div class="teaching-item">
+                    <h3>Research Methods for Sustainable Science</h3>
+                </div>
+                <div class="teaching-item">
+                    <h3>Pluralising the Anthropocene</h3>
+                </div>
+            </div>
+        </section>
+
         <section id="supervision" class="students-section">
             <h2 class="section-title">Supervision</h2>
             
@@ -730,16 +783,23 @@
                 <h3>Current Students</h3>
                 <div class="student-cards">
                     <div class="student-card">
-                        <div class="student-avatar"></div>
+                        <div class="student-avatar">
+                            <img src="Pin-Han Tsai.jpg" alt="Pin-Han Tsai">
+                        </div>
                         <div class="student-name">Pin-Han Tsai</div>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Thesis: Tracing the Carbon Border: The Politics of Carbon Traceability under CBAM in Taiwan's Fastener Industry</p>
                     </div>
                     <div class="student-card">
-                        <div class="student-avatar"></div>
+                        <div class="student-avatar">
+                            <img src="Chia-Chien Li.jpg" alt="Chia-Chien Li">
+                        </div>
                         <div class="student-name">Chia-Chien Li</div>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Thesis: Digital Technologies and Decarbonization in Post-Industrial Urban Transformation: A Case Study of Kaohsiung</p>
                     </div>
                     <div class="student-card">
                         <div class="student-avatar"></div>
                         <div class="student-name">Huỳnh Hà Quốc Việt (Jason)</div>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Thesis: Rice, Risk, and Resilience: How Climate Services Shape Adaptation in Vietnam's Vulnerable Mekong Delta</p>
                     </div>
                 </div>
             </div>
@@ -748,7 +808,9 @@
                 <h3>Alumni</h3>
                 <div class="student-cards">
                     <div class="student-card">
-                        <div class="student-avatar"></div>
+                        <div class="student-avatar">
+                            <img src="Yan-Ruei Huang.jpg" alt="Yan-Ruei Huang">
+                        </div>
                         <div class="student-name">Yan-Ruei Huang</div>
                         <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Thesis: Rethinking Design for Sustainability: A Novel Multi-Objective Optimization Methodology for Sustainable Product Lifecycle Design</p>
                     </div>
@@ -783,9 +845,6 @@
         <section class="photo-gallery" id="gallery">
             <h2 class="section-title">Gallery</h2>
             <div class="gallery-masonry">
-                <!-- <div class="gallery-item"> -->
-                <!--     <img src="photo/1.jpg" alt="Research Photo 1"> -->
-                <!-- </div> -->
                 <div class="gallery-item">
                     <img src="photo/2.jpg" alt="Research Photo 2">
                 </div>
@@ -798,9 +857,6 @@
                 <div class="gallery-item">
                     <img src="photo/5.jpg" alt="Research Photo 5">
                 </div>
-                <!-- <div class="gallery-item"> -->
-                <!--     <img src="photo/6.jpg" alt="Research Photo 6"> -->
-                <!-- </div> -->
                 <div class="gallery-item">
                     <img src="photo/7.jpg" alt="Research Photo 7">
                 </div>
@@ -819,22 +875,6 @@
                 <div class="gallery-item">
                     <img src="photo/12.jpg" alt="Research Photo 12">
                 </div>
-                <!-- <div class="gallery-item"> -->
-                <!--     <img src="photo/13.jpg" alt="Research Photo 13"> -->
-                <!-- </div> -->
-                <!-- <div class="gallery-item"><img src="photo/1.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/2.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/3.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/4.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/5.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/6.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/7.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/8.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/9.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/10.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/11.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/12.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/13.jpg" alt="Photo"></div> -->
             </div>
         </section>
 
@@ -1019,22 +1059,48 @@
             </div>
         </section>
 
+        <!-- NEW TEACHING SECTION IN CHINESE -->
+        <section id="teaching">
+            <h2 class="section-title">教學課程</h2>
+            <div class="teaching-list">
+                <div class="teaching-item">
+                    <h3>前瞻議題I & II: 氣候服務與環境永續</h3>
+                </div>
+                <div class="teaching-item">
+                    <h3>氣候變遷與人居環境議題實作</h3>
+                </div>
+                <div class="teaching-item">
+                    <h3>永續科學的研究方法</h3>
+                </div>
+                <div class="teaching-item">
+                    <h3>多樣化人類世</h3>
+                </div>
+            </div>
+        </section>
+
         <section id="supervision" class="students-section">
             <h2 class="section-title">指導學生</h2>
             <div class="student-group">
                 <h3>目前指導的學生</h3>
                 <div class="student-cards">
                     <div class="student-card">
-                        <div class="student-avatar"></div>
+                        <div class="student-avatar">
+                            <img src="Pin-Han Tsai.jpg" alt="蔡秉翰">
+                        </div>
                         <div class="student-name">蔡秉翰</div>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">論文題目: 追溯碳邊界：CBAM下碳排放的多元詮釋與治理</p>
                     </div>
                     <div class="student-card">
-                        <div class="student-avatar"></div>
+                        <div class="student-avatar">
+                            <img src="Chia-Chien Li.jpg" alt="李家謙">
+                        </div>
                         <div class="student-name">李家謙</div>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">論文題目: 後工業時代城市轉型中的數位科技與減碳策略：以高雄為例</p>
                     </div>
                     <div class="student-card">
                         <div class="student-avatar"></div>
                         <div class="student-name">Huỳnh Hà Quốc Việt (Jason)</div>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">論文題目: Rice, Risk, and Resilience: How Climate Services Shape Adaptation in Vietnam's Vulnerable Mekong Delta</p>
                     </div>
                 </div>
             </div>
@@ -1042,7 +1108,9 @@
                 <h3>畢業生</h3>
                 <div class="student-cards">
                     <div class="student-card">
-                        <div class="student-avatar"></div>
+                        <div class="student-avatar">
+                            <img src="Yan-Ruei Huang.jpg" alt="黃衍瑞">
+                        </div>
                         <div class="student-name">黃衍瑞</div>
                         <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">論文題目: 重塑永續產品設計思維：以多目標最佳化及生命週期評估打造永續產品設計方法學</p>
                     </div>
@@ -1076,9 +1144,6 @@
         <section class="photo-gallery" id="gallery">
             <h2 class="section-title">照片集</h2>
             <div class="gallery-masonry">
-                <!-- <div class="gallery-item"> -->
-                <!--     <img src="photo/1.jpg" alt="研究照片 1"> -->
-                <!-- </div> -->
                 <div class="gallery-item">
                     <img src="photo/2.jpg" alt="研究照片 2">
                 </div>
@@ -1091,9 +1156,6 @@
                 <div class="gallery-item">
                     <img src="photo/5.jpg" alt="研究照片 5">
                 </div>
-                <!-- <div class="gallery-item"> -->
-                <!--     <img src="photo/6.jpg" alt="研究照片 6"> -->
-                <!-- </div> -->
                 <div class="gallery-item">
                     <img src="photo/7.jpg" alt="研究照片 7">
                 </div>
@@ -1112,22 +1174,6 @@
                 <div class="gallery-item">
                     <img src="photo/12.jpg" alt="研究照片 12">
                 </div>
-                <!-- <div class="gallery-item"> -->
-                <!--     <img src="photo/13.jpg" alt="研究照片 13"> -->
-                <!-- </div> -->
-                <!-- <div class="gallery-item"><img src="photo/1.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/2.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/3.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/4.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/5.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/6.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/7.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/8.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/9.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/10.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/11.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/12.jpg" alt="Photo"></div> -->
-                <!-- <div class="gallery-item"><img src="photo/13.jpg" alt="Photo"></div> -->
             </div>
         </section>
 
@@ -1148,6 +1194,7 @@
     <footer>
         <p>© 2025 Yu-Kai Liao. All rights reserved.</p>
     </footer>
+
 <script>
     // Enhanced scroll functionality that works with language switching
     document.addEventListener('DOMContentLoaded', function() {
@@ -1258,101 +1305,5 @@
         }, 100);
     }
 </script>
-    <!-- <script> -->
-    <!--     // Enhanced scroll functionality -->
-    <!--     document.querySelectorAll('a[href^="#"]').forEach(anchor => { -->
-    <!--         anchor.addEventListener('click', function (e) { -->
-    <!--             e.preventDefault(); -->
-    <!---->
-    <!--             const targetId = this.getAttribute('href'); -->
-    <!--             const targetElement = document.querySelector(targetId); -->
-    <!---->
-    <!--             if (targetElement) { -->
-    <!--                 const headerHeight = document.querySelector('header').offsetHeight; -->
-    <!--                 const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight; -->
-    <!---->
-    <!--                 window.scrollTo({ -->
-    <!--                     top: targetPosition, -->
-    <!--                     behavior: 'smooth' -->
-    <!--                 }); -->
-    <!--             } -->
-    <!--         }); -->
-    <!--     }); -->
-    <!---->
-    <!--     // Navbar Active State Logic -->
-    <!--     const navLinks = document.querySelectorAll('.nav-links a'); -->
-    <!---->
-    <!--     navLinks.forEach(link => { -->
-    <!--         link.addEventListener('click', function() { -->
-    <!--             navLinks.forEach(l => l.classList.remove('active')); -->
-    <!--             this.classList.add('active'); -->
-    <!--             // Close mobile menu on click -->
-    <!--             document.getElementById('navLinks').classList.remove('open'); -->
-    <!--         }); -->
-    <!--     }); -->
-    <!---->
-    <!--     // Scroll Spy to update Active State on scroll -->
-    <!--     window.addEventListener('scroll', () => { -->
-    <!--         let current = ''; -->
-    <!--         const sections = document.querySelectorAll('section'); -->
-    <!--         const headerHeight = document.querySelector('header').offsetHeight; -->
-    <!---->
-    <!--         sections.forEach(section => { -->
-    <!--             const sectionTop = section.offsetTop; -->
-    <!--             if (pageYOffset >= (sectionTop - headerHeight - 50)) { -->
-    <!--                 current = section.getAttribute('id'); -->
-    <!--             } -->
-    <!--         }); -->
-    <!---->
-    <!--         navLinks.forEach(link => { -->
-    <!--             link.classList.remove('active'); -->
-    <!--             if (link.getAttribute('href').includes(current)) { -->
-    <!--                 link.classList.add('active'); -->
-    <!--             } -->
-    <!--         }); -->
-    <!--     }); -->
-    <!---->
-    <!--     function toggleMenu() { -->
-    <!--         const nav = document.getElementById('navLinks'); -->
-    <!--         // The new navbar uses 'open' class for mobile menu -->
-    <!--         nav.classList.toggle('open'); -->
-    <!--     } -->
-    <!---->
-    <!--     function closeMenu() { -->
-    <!--         document.getElementById('navLinks').classList.remove('open'); -->
-    <!--     } -->
-    <!---->
-    <!--     function updateNavText(lang) { -->
-    <!--         navLinks.forEach(link => { -->
-    <!--             const text = lang === 'en' ? link.getAttribute('data-en') : link.getAttribute('data-zh'); -->
-    <!--             if (text) link.textContent = text; -->
-    <!--         }); -->
-    <!--     } -->
-    <!---->
-    <!--     function switchLang(lang) { -->
-    <!--         const en = document.getElementById('en-content'); -->
-    <!--         const zh = document.getElementById('zh-content'); -->
-    <!--         const btns = document.querySelectorAll('.lang-btn'); -->
-    <!---->
-    <!--         if (lang === 'en') { -->
-    <!--             en.classList.add('active'); -->
-    <!--             zh.classList.remove('active'); -->
-    <!--             btns[0].classList.add('active'); -->
-    <!--             btns[1].classList.remove('active'); -->
-    <!--         } else { -->
-    <!--             en.classList.remove('active'); -->
-    <!--             zh.classList.add('active'); -->
-    <!--             btns[0].classList.remove('active'); -->
-    <!--             btns[1].classList.add('active'); -->
-    <!--         } -->
-    <!--         updateNavText(lang); -->
-    <!--         window.scrollTo({top: 0, behavior: 'smooth'}); -->
-    <!--         closeMenu(); -->
-    <!--     } -->
-    <!---->
-    <!--     document.addEventListener('DOMContentLoaded', () => { -->
-    <!--         updateNavText('en'); -->
-    <!--     }); -->
-    <!-- </script> -->
 </body>
 </html>
